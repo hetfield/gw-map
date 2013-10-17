@@ -92,19 +92,18 @@ class TranslationsController extends CController
         }
     }
 
-    public function actionGetJSON()
-    {
-        if (isset($_GET['floor'])){
-            $path = Yii::app()->basePath.DIRECTORY_SEPARATOR.'JSON';
-            if (!is_file($path.DIRECTORY_SEPARATOR.$_GET['floor'].'.json'))
-                echo '';
-            else {
-                header('Content-Type: application/json');
-                readfile($path.DIRECTORY_SEPARATOR.$_GET['floor'].'.json');
+//    public function actionGetJSON()
+//    {
+//        if (isset($_GET['floor'])){
+//            $path = Yii::app()->basePath.DIRECTORY_SEPARATOR.'JSON';
+//            if (!is_file($path.DIRECTORY_SEPARATOR.$_GET['floor'].'.json'))
+//                echo '';
+//            else {
+//                header('Content-Type: application/json');
 //                echo file_get_contents($path.DIRECTORY_SEPARATOR.$_GET['floor'].'.json');
-            }
+//            }
+//        }
+//    }
 
-        }
-    }
 
 }
