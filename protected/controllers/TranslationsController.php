@@ -69,21 +69,21 @@ class TranslationsController extends CController
                             $current_poi = Poi::model()->findByAttributes(array(
                                 'poi_id' => $point_of_interest->poi_id,
                             ));
-//                            if ($current_poi){
-//                                $point_of_interest->description = $current_poi->description;
-//                            } else {
-//                                $point_of_interest->description = '';
-//                            }
+                            if ($current_poi){
+                                $point_of_interest->description = $current_poi->description;
+                            } else {
+                                $point_of_interest->description = '';
+                            }
                         }
                         foreach($maps->tasks as $tasks){
                             $current_task = Tasks::model()->findByAttributes(array(
                                 'task_id' => $tasks->task_id,
                             ));
-//                            if ($current_task){
-//                                $tasks->description = $current_task->description;
-//                            } else {
-//                                $tasks->description = '';
-//                            }
+                            if ($current_task){
+                                $tasks->description = $current_task->description;
+                            } else {
+                                $tasks->description = '';
+                            }
                         }
                     }
                 }
