@@ -1,7 +1,7 @@
 <?php
 /**
  * @property integer $id
- * @property string $task_id
+ * @property integer $task_id
  * @property string $objective
  * @property string $description
  */

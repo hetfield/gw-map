@@ -1,7 +1,7 @@
 <?php
 /**
  * @property integer $id
- * @property string $poi_id
+ * @property integer $poi_id
  * @property string $name
  * @property string $description
  */
