@@ -29,7 +29,7 @@ class PoiController extends CController
             /** @var Poi $poi */
             $poi = Poi::model()->findByAttributes(array('poi_id' => $_POST['id']));
             if ($poi){
-                $poi->description = htmlspecialchars($_POST['text'], ENT_QUOTES);
+                $poi->description = htmlentities($_POST['text']);
                 $poi->save();
             }
         }

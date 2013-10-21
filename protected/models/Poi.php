@@ -65,7 +65,7 @@ class Poi extends CActiveRecord
             ),
             array(
                 'name' => 'description',
-                'value' => 'htmlspecialchars_decode($data->description, ENT_QUOTES)',
+                'value' => 'html_entity_decode($data->description)',
                 'htmlOptions' => array('class' => 'editable', 'style'=>'width: 55%;'),
             ),
         );
