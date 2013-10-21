@@ -55,7 +55,7 @@ class TranslationsController extends CController
     {
         if (Yii::app()->user->getState('Role') != 'Admin111') return;
 
-        $path = Yii::app()->basePath.DIRECTORY_SEPARATOR.'..'.'JSON';
+        $path = Yii::app()->basePath.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'JSON';
         if (!is_dir($path)){
             mkdir($path);
         }
