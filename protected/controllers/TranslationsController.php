@@ -94,6 +94,7 @@ class TranslationsController extends CController
 
 //    public function actionGetJSON()
 //    {
+//
 //        if (isset($_GET['floor'])){
 //            $path = Yii::app()->basePath.DIRECTORY_SEPARATOR.'JSON';
 //            if (!is_file($path.DIRECTORY_SEPARATOR.$_GET['floor'].'.json'))
