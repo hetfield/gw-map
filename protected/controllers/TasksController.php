@@ -29,7 +29,7 @@ class TasksController extends CController
             /** @var Tasks $poi */
             $tasks = Tasks::model()->findByAttributes(array('task_id' => $_POST['id']));
             if ($tasks){
-                $tasks->description = htmlentities($_POST['text']);
+                $tasks->description = htmlspecialchars($_POST['text'], ENT_QUOTES);
                 $tasks->save();
             }
         }

@@ -66,10 +66,12 @@ class Tasks extends CActiveRecord
             ),
             array(
                 'name' => 'description',
-                'value' => '$data->description',
+                'value' => 'htmlspecialchars_decode($data->description, ENT_QUOTES)',
                 'htmlOptions' => array('class' => 'editable'),
             ),
         );
+
+
     }
 
 
