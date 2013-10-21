@@ -32,6 +32,7 @@ class PoiController extends CController
                 $poi->description = htmlentities($_POST['text']);
                 $poi->save();
             }
+
         }
     }
 

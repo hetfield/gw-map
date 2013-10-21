@@ -32,6 +32,7 @@ class TasksController extends CController
                 $tasks->description = htmlentities($_POST['text']);
                 $tasks->save();
             }
+
         }
     }
 }

@@ -69,6 +69,7 @@ class Poi extends CActiveRecord
                 'htmlOptions' => array('class' => 'editable', 'style'=>'width: 55%;'),
             ),
         );
+
     }
 
 
