@@ -1,48 +1,56 @@
 <?php
-Yii::app()->clientScript->registerScript('mainPageScript', <<<JS
-
-$('body').bind('mousedown',function(){
-    $('.editable').each(function(k){
-        $(this).click(function(){
-            var width = $(this).width();
-            var height = $(this).height();
-            var id = $(this).closest('tr').find('td').eq(0).html();
-            var text = $(this).html();
-            if (text.indexOf('<textarea') == -1){
-                $(this).html('<textarea style="width: '+width+'px; height: '+height+'px; margin: 0px; padding: 0px;">'+$(this).html()+'</textarea>');
-                $(this).find('textarea').focus();
-                $(this).find('textarea').bind('focusout', function(){
-                    var text = $(this).val();
-                    $.ajax({
-                        url: '/poi/save/',
-                        type: 'POST',
-                        data: {'id':id,'text':text, 'k':k},
-                        success:  function(res) {
-                            console.log(res);
-                    }
-                    });
-                $(this).parent().html(text);
-                $(this).css('width','');
-            });
-            }
-        })
-})
-})
-JS
-, CClientScript::POS_READY);
-
+Yii::app()->clientScript->registerScriptFile(Yii::app()->createUrl('js/tinymce/tinymce.min.js'));
 ?>
+
+<script type="text/javascript">
+    $('.edit').live('click', function(){
+        var poi_id = $(this).attr('poi_id');
+        $.ajax({
+            url: '<?= Yii::app()->createUrl('poi/GetEditDialog') ?>',
+            type: 'POST',
+            data: {poi_id: poi_id},
+            success: function(response){
+                $('#description').html(response);
+                tinymce.init({
+                    selector: "#description",
+                    plugins: [
+                        "advlist autolink lists link image charmap print preview anchor",
+                        "searchreplace visualblocks code fullscreen",
+                        "insertdatetime media table contextmenu paste moxiemanager"
+                    ],
+                    toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image"
+                });
+                $('#mydialog').dialog('open');
+            }
+        });
+    });
+</script>
 
 <div id="poi-table">
     <?php
     /** @var Poi $model */
     $this->widget('bootstrap.widgets.TbGridView', array(
-        'type'=>'striped bordered condensed',
-        'dataProvider'=>$model->search(),
-        'template'=>"{pager}{summary}\n{items}\n{pager}",
+        'type' => 'striped bordered condensed',
+        'dataProvider' => $model->search(),
+        'template' => "{pager}{summary}\n{items}\n{pager}",
         'filter' => $model,
-        'columns'=>$model->getColumns(),
+        'columns' => $model->getColumns(),
         'enableSorting' => true,
     )); ?>
 </div>
+
+<?php
+$this->beginWidget('zii.widgets.jui.CJuiDialog',array(
+    'id'=>'mydialog',
+    // additional javascript options for the dialog plugin
+    'options'=>array(
+        'title'=>'Editing description',
+        'autoOpen'=>false,
+    ),
+));
+
+echo '<textarea id="description"></textarea>';
+
+$this->endWidget('zii.widgets.jui.CJuiDialog');
+?>
 

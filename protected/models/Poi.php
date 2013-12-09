@@ -8,7 +8,6 @@
 
 class Poi extends CActiveRecord
 {
-
     public static function model($className=__CLASS__)
     {
         return parent::model($className);
@@ -67,10 +66,13 @@ class Poi extends CActiveRecord
                 'name' => 'description',
                 'value' => 'htmlspecialchars_decode($data->description, ENT_QUOTES)',
                 'htmlOptions' => array('class' => 'editable', 'style'=>'width: 55%;'),
+                'type' => 'html',
             ),
-
+            array(
+                'value' => 'CHtml::link("Edit", "#", array("class" => "edit", "poi_id" => $data->poi_id));',
+                'type' => 'raw',
+            ),
         );
-
     }
 
 

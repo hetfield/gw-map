@@ -36,6 +36,26 @@ class PoiController extends CController
         }
     }
 
+    public function actionGetEditDialog()
+    {
+        if (Yii::app()->user->isGuest) return;
 
+        $poi_id = Yii::app()->request->getPost('poi_id');
+
+        if ($poi_id){
+            /** @var Poi $result */
+            $result = Poi::model()->findByAttributes(array(
+                'poi_id' => $poi_id,
+            ));
+
+            if ($result){
+                echo($result->description);
+            } else {
+                echo("Can't find a record in DataBase!");
+            }
+        } else {
+            echo('Poi_id is not set!');
+        }
+    }
 
 }
